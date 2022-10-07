@@ -1,6 +1,7 @@
 .profile__profession{
-  width: 282px;
-  margin: 0 auto;
+  max-width: 282px;
+  margin: 0;
+  padding-left: 17px;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -14,8 +15,9 @@
 
 @media screen and (min-width: 768px) {
   .profile__profession {
-    width: 336px;
-    text-align: left;
+    margin-right: auto;
+    padding: 0;
+    max-width: 336px;
     font-size: 18px;
     line-height: 22px;
   }

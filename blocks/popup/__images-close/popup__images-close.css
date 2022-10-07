@@ -1,3 +1,12 @@
+
+.popup__images-close {
+  background: url(../../../Images/Close_Icon.svg) no-repeat top center;
+  background-size: cover;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+}
+
 @media screen and (min-width: 768px) {
   .popup__images-close {
     width: 32px;

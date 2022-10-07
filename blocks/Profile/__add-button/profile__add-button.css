@@ -5,10 +5,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #FFFFFF;
   border-radius: 2px;
   transition: linear 1s;
   cursor: pointer;
+  background-color: none;
+  border: none;
+  outline: none;
+  border: 2px solid #FFFFFF;
 }
 
 .profile__add-button:hover{

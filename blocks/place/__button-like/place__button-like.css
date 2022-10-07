@@ -1,12 +1,12 @@
 .place__button-like{
-  position: absolute;
-  right: 20px;
-  bottom: 30px;
+  margin-top: 30px;
   padding: 0;
   width: 22px;
   height: 19px;
+  outline: none;
   border: none;
-  background-color: #FFFFFF;
+  background: none;
+  background-color: none;
   transition: linear 1s;
   cursor: pointer;
 }

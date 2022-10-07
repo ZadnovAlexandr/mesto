@@ -1,3 +1,12 @@
+
+  .profile__images-edit {
+    background: url(../../../Images/Edit_Button.svg) no-repeat top center;
+    padding: 0;
+    width: 8px;
+    height: 8px;
+    background-size: cover;
+    }
+
 @media screen and (min-width: 768px) {
   .profile__images-edit {
     width: 10px;

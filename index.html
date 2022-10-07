@@ -19,10 +19,14 @@
         <img class="profile__avatar" src="./Images/Кусто.jpg" alt="Жак-Ив Кусто">
         <nav class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"><img class="profile__images-edit" src="./Images/Edit_Button.svg" alt="Кнопка 'открыть'"></button>
+          <button type="button" class="profile__edit-button">
+            <div class="profile__images-edit"></div>
+          </button>
           <p class="profile__profession">Исследователь океана</p>
         </nav>
-        <button class="profile__add-button"><img class="profile__images-add" src="./Images/Add_Button.svg" alt="Кнопка 'Add Button'"></button>
+        <button type="button" class="profile__add-button">
+          <div class="profile__images-add"></div>
+        </button>
       </section>
 
       <section class="places" aria-label="Места России">
@@ -30,32 +34,44 @@
           <li class="place">
             <img class="place__image" src="./Images/Карачаевск.jpg" alt="Карачаево-Черкессия">
             <h2 class="place__title">Карачаево-Черкессия</h2>
-            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+            <button type="button" class="place__button-like">
+              <div class="place__images-like"></div>
+            </button>
           </li>
           <li class="place">
             <img class="place__image" src="./Images/Гора_Эльбрус.jpg" alt="Гора Эльбрус">
             <h2 class="place__title">Гора Эльбрус</h2>
-            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+            <button type="button" class="place__button-like">
+              <div class="place__images-like"></div>
+            </button>
           </li>
           <li class="place">
             <img class="place__image" src="./Images/Домбай.jpg" alt="Домбай">
             <h2 class="place__title">Домбай</h2>
-            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+            <button type="button" class="place__button-like">
+              <div class="place__images-like"></div>
+            </button>
           </li>
           <li class="place">
             <img class="place__image" src="./Images/Байкал.avif" alt="Ьайкал">
             <h2 class="place__title">Байкал</h2>
-            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+            <button type="button" class="place__button-like">
+              <div class="place__images-like"></div>
+            </button>
           </li>
           <li class="place">
             <img class="place__image" src="./Images/Карелия.avif" alt="Карелия">
             <h2 class="place__title">Карелия</h2>
-            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+            <button type="button" class="place__button-like">
+              <div class="place__images-like"></div>
+            </button>
           </li>
           <li class="place">
             <img class="place__image" src="./Images/Камчатка.avif" alt="Камчатка">
             <h2 class="place__title">Камчатка</h2>
-            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+            <button type="button" class="place__button-like">
+              <div class="place__images-like"></div>
+            </button>
           </li>
         </ul>
       </section>
@@ -68,14 +84,15 @@
 
     <section class="popup">
       <div class="popup__container">
-        <button class="popup__button-close"><img class="popup__images-close" src="./Images/Close_Icon.svg" alt="Крестик"></button>
+        <button type="button" class="popup__button-close">
+          <div class="popup__images-close"></div>
+        </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
-          <ul class="popup__lists">
-            <li><input class="popup__input popup__input_name"></li>
-            <li><input class="popup__input popup__input_profession"></li>
+        <form name="FormPopup" class="popup__form">
+          <input name="FormImpName" class="popup__input popup__input_theme_name">
+          <input name="FormImpProf" class="popup__input popup__input_theme_profession">
           </ul>
-          <button class="popup__button-save">Cохранить</button>
+          <button type="submit" class="popup__button-save">Cохранить</button>
         </form>
       </div>
     </section>
