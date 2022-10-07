@@ -1,0 +1,16 @@
+.place__button-like{
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  border: none;
+  background-color: #FFFFFF;
+  transition: linear 1s;
+  cursor: pointer;
+}
+
+.place__button-like:hover{
+  opacity: 0.5;
+}

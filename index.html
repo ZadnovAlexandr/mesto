@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
+  </head>
+
+  <body class="page">
+
+    <header class="header">
+      <img class="header__logo" src="./Images/Logo.svg" alt="Логотип">
+    </header>
+
+    <main> 
+
+      <section class="profile" aria-label="Информация о профиле">
+        <img class="profile__avatar" src="./Images/Кусто.jpg" alt="Жак-Ив Кусто">
+        <nav class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button"><img class="profile__images-edit" src="./Images/Edit_Button.svg" alt="Кнопка 'открыть'"></button>
+          <p class="profile__profession">Исследователь океана</p>
+        </nav>
+        <button class="profile__add-button"><img class="profile__images-add" src="./Images/Add_Button.svg" alt="Кнопка 'Add Button'"></button>
+      </section>
+
+      <section class="places" aria-label="Места России">
+        <ul class="places__list">
+          <li class="place">
+            <img class="place__image" src="./Images/Карачаевск.jpg" alt="Карачаево-Черкессия">
+            <h2 class="place__title">Карачаево-Черкессия</h2>
+            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+          </li>
+          <li class="place">
+            <img class="place__image" src="./Images/Гора_Эльбрус.jpg" alt="Гора Эльбрус">
+            <h2 class="place__title">Гора Эльбрус</h2>
+            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+          </li>
+          <li class="place">
+            <img class="place__image" src="./Images/Домбай.jpg" alt="Домбай">
+            <h2 class="place__title">Домбай</h2>
+            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+          </li>
+          <li class="place">
+            <img class="place__image" src="./Images/Байкал.avif" alt="Ьайкал">
+            <h2 class="place__title">Байкал</h2>
+            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+          </li>
+          <li class="place">
+            <img class="place__image" src="./Images/Карелия.avif" alt="Карелия">
+            <h2 class="place__title">Карелия</h2>
+            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+          </li>
+          <li class="place">
+            <img class="place__image" src="./Images/Камчатка.avif" alt="Камчатка">
+            <h2 class="place__title">Камчатка</h2>
+            <button class="place__button-like"><img src="./Images/Сердечко.svg" alt="Лайк"></button>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p class="footer__name">&copy; 2022 Mesto Russia</p>
+    </footer>
+
+    <section class="popup">
+      <div class="popup__container">
+        <button class="popup__button-close"><img class="popup__images-close" src="./Images/Close_Icon.svg" alt="Крестик"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form">
+          <ul class="form__lists">
+            <li><input class="popup__input popup__input_name"></li>
+            <li><input class="popup__input popup__input_profession"></li>
+          </ul>
+          <button class="popup__button-save">Cохранить</button>
+        </form>
+      </div>
+    </section>
+
+    <script src=".//scripts/index.js"></script>
+  </body>
+
+</html>

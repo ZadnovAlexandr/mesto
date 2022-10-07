@@ -1,0 +1,16 @@
+.form__lists{
+  list-style: none;
+  padding: 0 0 45px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 238px;
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .form__lists {
+    padding: 0 0 48px;
+    grid-template-columns: 358px;
+  }
+}
