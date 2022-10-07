@@ -1,4 +1,4 @@
-.form__lists{
+.popup__lists{
   list-style: none;
   padding: 0 0 45px;
   margin: 0;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .form__lists {
+  .popup__lists {
     padding: 0 0 48px;
     grid-template-columns: 358px;
   }
