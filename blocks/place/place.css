@@ -5,6 +5,6 @@
   border-radius: 10px;
   display: grid;
   grid-template-columns: 241px 41px;
-  grid-template-rows: repeat(2, min-content);
+  grid-template-rows: repeat(2, max-content);
  
 }

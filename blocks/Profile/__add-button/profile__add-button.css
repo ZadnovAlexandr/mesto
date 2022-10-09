@@ -1,7 +1,7 @@
 .profile__add-button{
-  background: url(../../../Images/Add_Button.svg) no-repeat;
+  background: url(../../../images/Add_Button.svg) no-repeat;
   background-size: 16px;
-  background-color: none;
+  background-color: transparent;
   background-position: center;
   outline: none;
   width: 282px;

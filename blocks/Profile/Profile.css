@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: center;
     grid-template-columns: repeat(2, min-content);
-    grid-template-rows: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
     column-gap: 30px;
     row-gap: 15px;
   }
@@ -21,6 +21,6 @@
   .profile {
     padding: 40px 0 0;
     grid-template-columns: 120px 550px 150px;
-    grid-template-rows: 1fr;
+    grid-template-rows: max-content;
   }
 }
