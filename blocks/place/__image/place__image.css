@@ -1,4 +1,5 @@
 .place__image{
+  color: #000;
   width: 282px;
   height: 282px;
   display: block;
@@ -7,4 +8,5 @@
   grid-column-end: 3;
   object-fit: cover;
   object-position: center;
+  cursor: pointer;
 }
