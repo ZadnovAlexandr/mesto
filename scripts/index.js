@@ -21,8 +21,8 @@ const nameInput = document.querySelector(`.form__input_theme_name`);
 const jobInput = document.querySelector(`.form__input_theme_profession`);
 const headingName = document.querySelector(`.profile__name`);
 const headingpProfession = document.querySelector(`.profile__profession`);
-const ImpMestoName = document.querySelector(`.form__input_theme_mesto-name`);
-const MestoURL = document.querySelector(`.form__input_theme_mesto-URL`);
+const impMestoName = document.querySelector(`.form__input_theme_mesto-name`);
+const mestoURL = document.querySelector(`.form__input_theme_mesto-URL`);
 const headingImg = document.querySelector(`.popup__image`);
 const headingImgAlt = document.querySelector(`.popup__image`);
 const headingSubtitle = document.querySelector(`.popup__subtitle`);
@@ -40,8 +40,8 @@ const removeItem = (element) => {
 };
 
 const clearInput = () =>{
-  ImpMestoName.value = ``;
-  MestoURL.value = ``;
+  impMestoName.value = ``;
+  mestoURL.value = ``;
 } 
 
 const createCard = (item) =>{
@@ -85,10 +85,10 @@ const createItem = (item) => addCard(createCard(item))
 
 initialCards.forEach(createItem);
 
-const handleSubmit = (event) =>{
+const submitAddCardForm = (event) =>{
   event.preventDefault();
-  const headingMestoName = ImpMestoName.value;
-  const headingMestoURL = MestoURL.value;
+  const headingMestoName = impMestoName.value;
+  const headingMestoURL = mestoURL.value;
   createItem({
     name: headingMestoName,
     link: headingMestoURL
@@ -97,23 +97,23 @@ const handleSubmit = (event) =>{
   clearInput()
 };
  
-const handleOpenProfilePopup = () =>{
+const openProfilePopup = () =>{
   nameInput.value = headingName.textContent;
   jobInput.value = headingpProfession.textContent;
   openPopup(popupProfile);
 };
 
-const formSubmitHandler = (evt) => {
+const submitEditProfileForm = (evt) => {
   evt.preventDefault();
   headingName.textContent = nameInput.value;
   headingpProfession.textContent = jobInput.value;
   closePopup(popupProfile);
 };
 
-openEditBtn.addEventListener(`click`, handleOpenProfilePopup);
+openEditBtn.addEventListener(`click`, openProfilePopup);
 openAddBtn.addEventListener(`click`, () => openPopup(popupAddCard));
 closeProfBtn.addEventListener(`click`, () => closePopup(popupProfile));
 closeAddCardBtn.addEventListener(`click`, () => closePopup(popupAddCard));
 closeCard.addEventListener(`click`, () => closePopup(popupCard));
-formProf.addEventListener(`submit`, formSubmitHandler);
-formAddCard.addEventListener(`submit`, handleSubmit);
+formProf.addEventListener(`submit`, submitEditProfileForm);
+formAddCard.addEventListener(`submit`, submitAddCardForm);
