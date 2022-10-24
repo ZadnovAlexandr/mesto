@@ -1,15 +1,12 @@
-const POPUP_ACTIVE = `popup_opened`;
-
-
+const selectorOpenedPopup = `popup_opened`;
+const selectorActiveLike = `place__button-like_active`;
 
 const openEditBtn = document.querySelector(`.profile__edit-button`);
 const openAddBtn = document.querySelector(`.profile__add-button`);
 
-const popup = document.querySelector(`.popup`);
 const popupProfile = document.querySelector(`.popup_type_profile`);
 const popupAddCard = document.querySelector(`.popup_type_add-card`);
 const popupCard = document.querySelector(`.popup_type_open-card`);
-
 
 const closeProfBtn = document.querySelector(`.popup__button-close_type_profile`);
 const closeAddCardBtn = document.querySelector(`.popup__button-close_type_add-card`);
@@ -19,7 +16,6 @@ const formProf = document.querySelector(`.form_type_profile`);
 const formAddCard = document.querySelector(`.form_type_add-card`);
 const placesList = document.querySelector('.places__list');
 const placeTemplate = document.querySelector('.place-template').content;
-
 
 const nameInput = document.querySelector(`.form__input_theme_name`);
 const jobInput = document.querySelector(`.form__input_theme_profession`);
@@ -31,41 +27,12 @@ const headingImg = document.querySelector(`.popup__image`);
 const headingImgAlt = document.querySelector(`.popup__image`);
 const headingSubtitle = document.querySelector(`.popup__subtitle`);
 
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
-
 const openPopup = (popup) =>{
-  popup.classList.add(POPUP_ACTIVE);
+  popup.classList.add(selectorOpenedPopup);
 };
 
-
 const closePopup = (popup) =>{
-  popup.classList.remove(POPUP_ACTIVE);
+  popup.classList.remove(selectorOpenedPopup);
 };
 
 const removeItem = (element) => {
@@ -77,8 +44,7 @@ const clearInput = () =>{
   MestoURL.value = ``;
 } 
 
-
-const createItem = (item) =>{
+const createCard = (item) =>{
   const placeElement = placeTemplate.cloneNode(true).querySelector('.place');
 
   const elementLink = placeElement.querySelector('.place__image');
@@ -88,31 +54,34 @@ const createItem = (item) =>{
   const card = placeElement.querySelector('.place__image');
   const ButLike = placeElement.querySelector('.place__button-like');
   const like = placeElement.querySelector(`.place__button-like`);
-    
-  const LIKE_ACTIVE = `place__button-like_active`;
 
   elementLink.src = item.link;
   elementAlt.alt = item.name;
   elementName.textContent = item.name;
 
-  removeButton.addEventListener(`click`, () => removeItem(placeElement));
-  card.addEventListener(`click`, () => handleOpenCardPopup(placeElement));
-  ButLike.addEventListener(`click`,() => likeclick(placeElement));
-    
   const likeclick = () =>{
-    like.classList.toggle(LIKE_ACTIVE);
+    like.classList.toggle(selectorActiveLike);
   };
 
-  const handleOpenCardPopup = (item) =>{
+  const handleOpenCardPopup = () =>{
     headingSubtitle.textContent = elementName.textContent;
     headingImg.src =  elementLink.src;
     headingImgAlt.alt = elementName.textContent;
     openPopup(popupCard);
   };
 
-  placesList.prepend(placeElement);     
+  removeButton.addEventListener(`click`, () => removeItem(placeElement));
+  card.addEventListener(`click`, () => handleOpenCardPopup(placeElement));
+  ButLike.addEventListener(`click`,() => likeclick(placeElement));
 
+   return (placeElement);
 };
+
+const addCard = (placeElement) =>{
+  placesList.prepend(placeElement); 
+};
+
+const createItem = (item) => addCard(createCard(item))
 
 initialCards.forEach(createItem);
 
