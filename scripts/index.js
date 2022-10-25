@@ -35,15 +35,6 @@ const closePopup = (popup) =>{
   popup.classList.remove(selectorOpenedPopup);
 };
 
-const removeItem = (element) => {
-  element.remove();
-};
-
-const clearInput = () =>{
-  impMestoName.value = ``;
-  mestoURL.value = ``;
-} 
-
 const createCard = (item) =>{
   const placeElement = placeTemplate.cloneNode(true).querySelector('.place');
 
@@ -52,30 +43,39 @@ const createCard = (item) =>{
   const elementName = placeElement.querySelector('.place__title');
   const removeButton = placeElement.querySelector('.place__button-delete');
   const card = placeElement.querySelector('.place__image');
-  const ButLike = placeElement.querySelector('.place__button-like');
+  const btnLike = placeElement.querySelector('.place__button-like');
   const like = placeElement.querySelector(`.place__button-like`);
 
+  elementName.textContent = item.name;
   elementLink.src = item.link;
   elementAlt.alt = item.name;
-  elementName.textContent = item.name;
-
-  const likeclick = () =>{
-    like.classList.toggle(selectorActiveLike);
-  };
-
-  const handleOpenCardPopup = () =>{
-    headingSubtitle.textContent = elementName.textContent;
-    headingImg.src =  elementLink.src;
-    headingImgAlt.alt = elementName.textContent;
-    openPopup(popupCard);
-  };
 
   removeButton.addEventListener(`click`, () => removeItem(placeElement));
-  card.addEventListener(`click`, () => handleOpenCardPopup(placeElement));
-  ButLike.addEventListener(`click`,() => likeclick(placeElement));
+  card.addEventListener(`click`, () => handleOpenCardPopup(elementName, elementLink));
+  btnLike.addEventListener(`click`,() => likeclick(like));
 
    return (placeElement);
 };
+
+const likeclick = (like) =>{
+  like.classList.toggle(selectorActiveLike);
+};
+
+const handleOpenCardPopup = (elementName, elementLink) =>{
+  headingSubtitle.textContent = elementName.textContent;
+  headingImg.src =  elementLink.src;
+  headingImgAlt.alt = elementName.textContent;
+  openPopup(popupCard);
+};
+
+const removeItem = (placeElement) => {
+  placeElement.remove();
+};
+
+const clearInput = () =>{
+  impMestoName.value = ``;
+  mestoURL.value = ``;
+} 
 
 const addCard = (placeElement) =>{
   placesList.prepend(placeElement); 
