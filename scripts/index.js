@@ -93,14 +93,13 @@ const openPopup = (popup) => {
   popup.classList.add(selectorOpenedPopup);
   popup.addEventListener("click", closePopupClick);
   document.addEventListener("keydown", closePopupKey);
-  disableButton(buttonElemeSave, selectorDisablesubmitButton);
 };
   
 const closePopup = (popup) => {
   popup.classList.remove(selectorOpenedPopup);
   popup.removeEventListener("click", closePopupClick);
   document.removeEventListener("keydown", closePopupKey);
-  clearInput()
+
 };
    
 const closePopupClick = (evt) => {
@@ -128,7 +127,12 @@ const openProfilePopup = () =>{
   nameInput.value = headingName.textContent;
   jobInput.value = headingpProfession.textContent;
   openPopup(popupProfile);
-  
+};
+
+const openPopupAdd = () => {
+  openPopup(popupAddCard)
+   disableButton(buttonElemeSave, selectorDisablesubmitButton);
+   clearInput()
 };
 
 const submitEditProfileForm = (evt) => {
@@ -139,6 +143,6 @@ const submitEditProfileForm = (evt) => {
 };
 
 openEditBtn.addEventListener(`click`, openProfilePopup);
-openAddBtn.addEventListener(`click`, () => openPopup(popupAddCard));
+openAddBtn.addEventListener(`click`, openPopupAdd);
 formProf.addEventListener(`submit`, submitEditProfileForm);
 formAddCard.addEventListener(`submit`, submitAddCardForm);
