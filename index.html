@@ -53,15 +53,36 @@
           class="popup__button-close popup__button-close_type_profile">
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="formPopupProfile" class="form form_type_profile">
-          <input 
-            name="formImpName" 
-            placeholder="Имя" 
-            class="form__input form__input_theme_name">
-          <input 
-            name="formImpProf" 
-            placeholder="Вид деятельности" 
-            class="form__input form__input_theme_profession">
+        <form 
+          name="formPopupProfile" 
+          class="form form_type_profile"
+          novalidate>
+          <label class="form__field">
+            <input 
+              name="name" 
+              type="text"
+              placeholder="Имя" 
+              class="form__input form__input_theme_name"
+              minlength="2"
+              maxlength="40"
+              required>
+            <span
+              class="form__error form__input-error-name">
+            </span>
+          </label>
+          <label class="form__field">
+            <input 
+              name="profession" 
+              type="text"
+              placeholder="Вид деятельности" 
+              class="form__input form__input_theme_profession"
+              minlength="2"
+              maxlength="200"
+              required>
+            <span
+              class="form__error form__input-error-profession">
+            </span>
+          </label>
           <button type="submit" aria-label="Сохранить" class="form__button-save">Cохранить</button>
         </form>
       </div>
@@ -75,15 +96,34 @@
           class="popup__button-close popup__button-close_type_add-card">
         </button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="formPopupAddcard" class="form form_type_add-card">
-          <input 
-            name="formImpMestoName" 
-            placeholder="Название" 
-            class="form__input form__input_theme_mesto-name">
-          <input 
-            name="formImpMestoURL" 
-            placeholder="Ссылка на картинку"
-            class="form__input form__input_theme_mesto-URL">
+        <form 
+          name="formPopupAddcard"
+          class="form form_type_add-card"
+          novalidate>
+          <label class="form__field">
+            <input 
+              name="mestoName" 
+              type="text"
+              placeholder="Название" 
+              class="form__input form__input_theme_mestoName"
+              minlength="2"
+              maxlength="40"
+              required>
+            <span
+              class="form__error form__input-error-mestoName">
+            </span>
+          </label>
+          <label class="form__field">
+            <input 
+              name="mestoURL" 
+              type="url"
+              placeholder="Ссылка на картинку"
+              class="form__input form__input_theme_mestoURL"
+              required>
+            <span
+              class="form__error form__input-error-mestoURL">
+            </span>
+          </label>
           <button type="submit" aria-label="Создать" class="form__button-save">Создать</button>
         </form>
       </div>
@@ -102,6 +142,7 @@
     </section>
     <script src="./scripts/constants.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
     </body>
 
 </html>

@@ -1,16 +1,15 @@
 const selectorOpenedPopup = `popup_opened`;
 const selectorActiveLike = `place__button-like_active`;
 
+const selectorDisablesubmitButton = `form__button-save_disabled`;
+
 const openEditBtn = document.querySelector(`.profile__edit-button`);
 const openAddBtn = document.querySelector(`.profile__add-button`);
 
+const popupAll = document.querySelectorAll(".popup");
 const popupProfile = document.querySelector(`.popup_type_profile`);
 const popupAddCard = document.querySelector(`.popup_type_add-card`);
 const popupCard = document.querySelector(`.popup_type_open-card`);
-
-const closeProfBtn = document.querySelector(`.popup__button-close_type_profile`);
-const closeAddCardBtn = document.querySelector(`.popup__button-close_type_add-card`);
-const closeCard = document.querySelector(`.popup__button-close_type-card`);
 
 const formProf = document.querySelector(`.form_type_profile`);
 const formAddCard = document.querySelector(`.form_type_add-card`);
@@ -21,19 +20,13 @@ const nameInput = document.querySelector(`.form__input_theme_name`);
 const jobInput = document.querySelector(`.form__input_theme_profession`);
 const headingName = document.querySelector(`.profile__name`);
 const headingpProfession = document.querySelector(`.profile__profession`);
-const impMestoName = document.querySelector(`.form__input_theme_mesto-name`);
-const mestoURL = document.querySelector(`.form__input_theme_mesto-URL`);
+const impMestoName = document.querySelector(`.form__input_theme_mestoName`);
+const mestoURL = document.querySelector(`.form__input_theme_mestoURL`);
 const headingImg = document.querySelector(`.popup__image`);
 const headingImgAlt = document.querySelector(`.popup__image`);
 const headingSubtitle = document.querySelector(`.popup__subtitle`);
 
-const openPopup = (popup) =>{
-  popup.classList.add(selectorOpenedPopup);
-};
-
-const closePopup = (popup) =>{
-  popup.classList.remove(selectorOpenedPopup);
-};
+const buttonElemeSave = formAddCard.querySelector(`.form__button-save`);
 
 const createCard = (item) =>{
   const placeElement = placeTemplate.cloneNode(true).querySelector('.place');
@@ -93,27 +86,59 @@ const submitAddCardForm = (event) =>{
     name: headingMestoName,
     link: headingMestoURL
   })
-  closePopup(popupAddCard);
+  closePopup(popupAddCard, event);
+};
+
+const openPopup = (popup) => {
+  popup.classList.add(selectorOpenedPopup);
+  popup.addEventListener("click", closePopupClick);
+  document.addEventListener("keydown", closePopupKey);
+  disableButton(buttonElemeSave, selectorDisablesubmitButton);
+};
+  
+const closePopup = (popup) => {
+  popup.classList.remove(selectorOpenedPopup);
+  popup.removeEventListener("click", closePopupClick);
+  document.removeEventListener("keydown", closePopupKey);
   clearInput()
 };
+   
+const closePopupClick = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.currentTarget);
+  }
+};
+
+const closePopupKey = (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+};
+
+popupAll.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup__button-close")) {
+      closePopup(popup);
+    }
+  });
+});
  
 const openProfilePopup = () =>{
   nameInput.value = headingName.textContent;
   jobInput.value = headingpProfession.textContent;
   openPopup(popupProfile);
+  
 };
 
 const submitEditProfileForm = (evt) => {
   evt.preventDefault();
   headingName.textContent = nameInput.value;
   headingpProfession.textContent = jobInput.value;
-  closePopup(popupProfile);
+ closePopup(popupProfile);
 };
 
 openEditBtn.addEventListener(`click`, openProfilePopup);
 openAddBtn.addEventListener(`click`, () => openPopup(popupAddCard));
-closeProfBtn.addEventListener(`click`, () => closePopup(popupProfile));
-closeAddCardBtn.addEventListener(`click`, () => closePopup(popupAddCard));
-closeCard.addEventListener(`click`, () => closePopup(popupCard));
 formProf.addEventListener(`submit`, submitEditProfileForm);
 formAddCard.addEventListener(`submit`, submitAddCardForm);
