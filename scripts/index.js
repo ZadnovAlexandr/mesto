@@ -1,7 +1,8 @@
-const selectorOpenedPopup = `popup_opened`;
-const selectorActiveLike = `place__button-like_active`;
+import { initialCards } from "./constants.js"
+import { Card } from "./card.js"
+import { FormValidator } from "./formValidator.js"
 
-const selectorDisablesubmitButton = `form__button-save_disabled`;
+const selectorOpenedPopup = `popup_opened`;
 
 const openEditBtn = document.querySelector(`.profile__edit-button`);
 const openAddBtn = document.querySelector(`.profile__add-button`);
@@ -9,12 +10,10 @@ const openAddBtn = document.querySelector(`.profile__add-button`);
 const popupAll = document.querySelectorAll(".popup");
 const popupProfile = document.querySelector(`.popup_type_profile`);
 const popupAddCard = document.querySelector(`.popup_type_add-card`);
-const popupCard = document.querySelector(`.popup_type_open-card`);
 
 const formProf = document.querySelector(`.form_type_profile`);
 const formAddCard = document.querySelector(`.form_type_add-card`);
 const placesList = document.querySelector('.places__list');
-const placeTemplate = document.querySelector('.place-template').content;
 
 const nameInput = document.querySelector(`.form__input_theme_name`);
 const jobInput = document.querySelector(`.form__input_theme_profession`);
@@ -26,44 +25,24 @@ const headingImg = document.querySelector(`.popup__image`);
 const headingImgAlt = document.querySelector(`.popup__image`);
 const headingSubtitle = document.querySelector(`.popup__subtitle`);
 
-const buttonElemeSave = formAddCard.querySelector(`.form__button-save`);
-
 const createCard = (item) =>{
-  const placeElement = placeTemplate.cloneNode(true).querySelector('.place');
-
-  const elementLink = placeElement.querySelector('.place__image');
-  const elementAlt = placeElement.querySelector('.place__image');
-  const elementName = placeElement.querySelector('.place__title');
-  const removeButton = placeElement.querySelector('.place__button-delete');
-  const card = placeElement.querySelector('.place__image');
-  const btnLike = placeElement.querySelector('.place__button-like');
-  const like = placeElement.querySelector(`.place__button-like`);
-
-  elementName.textContent = item.name;
-  elementLink.src = item.link;
-  elementAlt.alt = item.name;
-
-  removeButton.addEventListener(`click`, () => removeItem(placeElement));
-  card.addEventListener(`click`, () => handleOpenCardPopup(elementName, elementLink));
-  btnLike.addEventListener(`click`,() => likeclick(like));
-
-   return (placeElement);
+  const cards = new Card(item, 
+    (handleOpenCardPopup, name, link) =>{
+      headingSubtitle.textContent = name;
+      headingImg.src = link;
+      headingImgAlt.alt = name;
+      openPopup(handleOpenCardPopup);
+    }
+  ); 
+  const placeElement = cards.create();
+  return (placeElement);
 };
 
-const likeclick = (like) =>{
-  like.classList.toggle(selectorActiveLike);
-};
+const formProfValidator = new FormValidator(formProf);
+const formAddValidator = new FormValidator(formAddCard);
+formProfValidator.enableValidation()
+formAddValidator.enableValidation()
 
-const handleOpenCardPopup = (elementName, elementLink) =>{
-  headingSubtitle.textContent = elementName.textContent;
-  headingImg.src =  elementLink.src;
-  headingImgAlt.alt = elementName.textContent;
-  openPopup(popupCard);
-};
-
-const removeItem = (placeElement) => {
-  placeElement.remove();
-};
 
 const clearInput = () =>{
   impMestoName.value = ``;
@@ -122,7 +101,7 @@ popupAll.forEach((popup) => {
     }
   });
 });
- 
+
 const openProfilePopup = () =>{
   nameInput.value = headingName.textContent;
   jobInput.value = headingpProfession.textContent;
@@ -131,15 +110,15 @@ const openProfilePopup = () =>{
 
 const openPopupAdd = () => {
   openPopup(popupAddCard)
-   disableButton(buttonElemeSave, selectorDisablesubmitButton);
-   clearInput()
+  formAddValidator.disableButton();
+  clearInput()
 };
 
 const submitEditProfileForm = (evt) => {
   evt.preventDefault();
   headingName.textContent = nameInput.value;
   headingpProfession.textContent = jobInput.value;
- closePopup(popupProfile);
+  closePopup(popupProfile);
 };
 
 openEditBtn.addEventListener(`click`, openProfilePopup);
