@@ -16,6 +16,13 @@ export class FormValidator {
   this._disablesubmitButtonClass = `form__button-save_disabled`;
 }
 
+hideErrors() {
+  this._inputList.forEach((inputElement) => {
+    this._hideInputError(inputElement);
+  });
+  this._enableButton();
+}
+
 _toggleButtonState() {
   if (this._hasInvalidInput(this._inputList)) {
     this.disableButton();

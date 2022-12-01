@@ -2,6 +2,7 @@
   background: #FFFFFF;
   color: #000000;
   opacity: 0.2;
+  cursor: auto;
 }
 
 .form__button-save_disabled:hover{

@@ -24,14 +24,15 @@ const mestoURL = document.querySelector(`.form__input_theme_mestoURL`);
 const headingImg = document.querySelector(`.popup__image`);
 const headingImgAlt = document.querySelector(`.popup__image`);
 const headingSubtitle = document.querySelector(`.popup__subtitle`);
+const popupCard = document.querySelector(`.popup_type_open-card`);
 
 const createCard = (item) =>{
   const cards = new Card(item, 
-    (handleOpenCardPopup, name, link) =>{
+    (name, link) =>{
       headingSubtitle.textContent = name;
       headingImg.src = link;
       headingImgAlt.alt = name;
-      openPopup(handleOpenCardPopup);
+      openPopup(popupCard);
     }
   ); 
   const placeElement = cards.create();
@@ -78,6 +79,8 @@ const closePopup = (popup) => {
   popup.classList.remove(selectorOpenedPopup);
   popup.removeEventListener("click", closePopupClick);
   document.removeEventListener("keydown", closePopupKey);
+  formProfValidator.hideErrors();
+  formAddValidator.hideErrors();
 
 };
    
