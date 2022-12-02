@@ -79,9 +79,6 @@ const closePopup = (popup) => {
   popup.classList.remove(selectorOpenedPopup);
   popup.removeEventListener("click", closePopupClick);
   document.removeEventListener("keydown", closePopupKey);
-  formProfValidator.hideErrors();
-  formAddValidator.hideErrors();
-
 };
    
 const closePopupClick = (evt) => {
@@ -106,13 +103,16 @@ popupAll.forEach((popup) => {
 });
 
 const openProfilePopup = () =>{
+  formProfValidator.hideErrors();
   nameInput.value = headingName.textContent;
   jobInput.value = headingpProfession.textContent;
   openPopup(popupProfile);
+  
 };
 
 const openPopupAdd = () => {
   openPopup(popupAddCard)
+  formAddValidator.hideErrors();
   formAddValidator.disableButton();
   clearInput()
 };
@@ -122,6 +122,7 @@ const submitEditProfileForm = (evt) => {
   headingName.textContent = nameInput.value;
   headingpProfession.textContent = jobInput.value;
   closePopup(popupProfile);
+  
 };
 
 openEditBtn.addEventListener(`click`, openProfilePopup);
