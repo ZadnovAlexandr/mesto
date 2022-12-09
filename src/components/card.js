@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   #template
   #data
   _placeElement
@@ -19,13 +19,13 @@ export class Card {
     this._placeElement = null;
   }
 
-  _handleOpenCardPopup(){
-    this._onClick (this.#data.name, this.#data.link);
-  }
-
   _likeclick(){
     const selectorActiveLike = `place__button-like_active`;
     this._like.classList.toggle(selectorActiveLike);
+  }
+
+  _handleOpenCardPopup(){
+    this._onClick (this.#data.name, this.#data.link);
   }
 
   getTemplate(){
@@ -51,4 +51,6 @@ export class Card {
     this._card.addEventListener(`click`, () =>  this._handleOpenCardPopup());
     this._like.addEventListener(`click`,() =>  this._likeclick());
   }
+
 }
+
