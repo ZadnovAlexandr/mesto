@@ -11,7 +11,8 @@ import { initialCards,
          jobInput,
          impMestoName,
          mestoURL,
-         popupCard
+         popupCard,
+         configValidation
 } from "./utils/constants.js"
 import Card from "./components/card.js"
 import FormValidator from "./components/formValidator.js"
@@ -19,6 +20,11 @@ import UserInfo from "./components/userInfo.js"
 import Section from "./components/section.js"
 import PopupWithForm from "./components/popupWithForm.js"
 import PopupWithImage from "./components/popupWithImage.js"
+
+const formProfValidator = new FormValidator(configValidation, formProf);
+const formAddValidator = new FormValidator(configValidation, formAddCard);
+formProfValidator.enableValidation()
+formAddValidator.enableValidation()
 
 const popupPhoto = new PopupWithImage(popupCard);
 popupPhoto.setEventListeners();
@@ -28,26 +34,25 @@ const openPopupPhoto = (name, link) => {
 };
 
 const createCard = (item) =>{
-  const cards = new Card(item, openPopupPhoto) ; 
-  const placeElement = cards.create();
-  return (placeElement);
+  const card = new Card(item, openPopupPhoto) ; 
+  return card.create();
 };
 
-const createItem = new Section({
+const cardsSection = new Section({
   items: initialCards,
   renderer: (item) => {
-      createItem.addItem(createCard(item));
+    cardsSection.addItem(createCard(item));
   }
 }, placesList);
 
-createItem.renderItems();
+cardsSection.renderItems();
 
 const profileInfo = new UserInfo({
   nameSelector: `.profile__name`, 
   professionSelector: `.profile__profession`
 });
 
-const profileModal = new PopupWithForm(popupProfile, {
+const profilePopup = new PopupWithForm(popupProfile, {
   handleSubmitForm: (data) => {
     profileInfo.setUserInfo({
       username: data.name ,
@@ -56,7 +61,7 @@ const profileModal = new PopupWithForm(popupProfile, {
   },
 });
 
-const openProfileModal = (popup) => {
+const openProfilePopup = (popup) => {
   const { username, profession } = profileInfo.getUserInfo();
   nameInput.value = username;
   jobInput.value = profession;
@@ -64,19 +69,19 @@ const openProfileModal = (popup) => {
 };
 
 openEditBtn.addEventListener("click", () => {
-  profileModal.setEventListeners();
+  profilePopup.setEventListeners();
   formProfValidator.hideErrors();
-  openProfileModal(profileModal);
+  openProfilePopup(profilePopup);
 });
 
-const clearInput = () =>{
+/*const clearInput = () =>{
   impMestoName.value = ``;
   mestoURL.value = ``;
-} 
+} */
 
 const submitAddCardForm = new PopupWithForm(popupAddCard, {
   handleSubmitForm: () => {
-    createItem.addItem(
+    cardsSection.addItem(
       createCard({
         link: mestoURL.value,
         name: impMestoName.value,
@@ -91,10 +96,5 @@ openAddBtn.addEventListener("click", () => {
   submitAddCardForm.openPopup();
   formAddValidator.hideErrors();
   formAddValidator.disableButton();
-  clearInput();
+ // clearInput();
 });
-
-const formProfValidator = new FormValidator(formProf);
-const formAddValidator = new FormValidator(formAddCard);
-formProfValidator.enableValidation()
-formAddValidator.enableValidation()

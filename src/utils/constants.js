@@ -25,6 +25,13 @@ export const initialCards = [
     }
   ]; 
 
+  export const configValidation = {
+    inputSelector:'.form__input',
+    submitButtonSelektor: `.form__button-save`,
+    invalidInputClass: 'form__input_theme_error',
+    disablesubmitButtonClass: `form__button-save_disabled`,
+  };
+
   export const openEditBtn = document.querySelector(`.profile__edit-button`);
   export const openAddBtn = document.querySelector(`.profile__add-button`);
   export const popupProfile = document.querySelector(`.popup_type_profile`);

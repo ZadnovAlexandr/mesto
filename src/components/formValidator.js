@@ -1,19 +1,12 @@
 export default class FormValidator {
-  _form
-  _inputSelector
-  _submitButtonSelektor
-  _invalidInputClass
-  _disablesubmitButtonClass
-  _inputList
-  _buttonElement
-  _inputElement
-
-  constructor(form) {
+ 
+  constructor(config, form) {
+  this.config = config;
   this._form = form;
-  this._inputSelector = '.form__input',
-  this._submitButtonSelektor = `.form__button-save`;
-  this._invalidInputClass = 'form__input_theme_error',
-  this._disablesubmitButtonClass = `form__button-save_disabled`;
+  this._inputSelector = config.inputSelector;
+  this._submitButtonSelektor = config.submitButtonSelektor;
+  this._invalidInputClass = config.invalidInputClass;
+  this._disablesubmitButtonClass = config.disablesubmitButtonClass;
 }
 
 hideErrors() {
@@ -24,7 +17,7 @@ hideErrors() {
 }
 
 _toggleButtonState() {
-  if (this._hasInvalidInput(this._inputList)) {
+  if (this._hasInvalidInput()) {
     this.disableButton();
   } else {
     this._enableButton();
@@ -45,11 +38,11 @@ _checkInputValidity(_inputElement){
   if (_inputElement.validity.valid) {
     this._hideInputError(_inputElement);
   } else {
-    this._showInputError(_inputElement)
+    this.showInputError(_inputElement)
   }
 };
 
-_showInputError(_inputElement){
+showInputError(_inputElement){
   const errorElement = this._form.querySelector(`.form__input-error-${_inputElement.name}`)
   _inputElement.classList.add(this._invalidInputClass);
   errorElement.textContent = _inputElement.validationMessage;

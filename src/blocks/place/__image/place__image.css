@@ -1,5 +1,6 @@
 .place__image{
-  color: #000;
+  color: white;
+  background-color: #000;
   width: 282px;
   height: 282px;
   display: block;

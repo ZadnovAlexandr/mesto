@@ -1,17 +1,9 @@
 export default class Card {
-  #template
-  #data
-  _placeElement
-  _elementName
-  _removeButton
-  _card
-  _like
-  _onClick
-
+ 
   constructor(data, onClick){
-    this.#data = data;
+    this._data = data;
     this._onClick = onClick;
-    this.getTemplate(); 
+    this._createTempate(); 
   }
 
   _removeItem(){
@@ -19,29 +11,29 @@ export default class Card {
     this._placeElement = null;
   }
 
-  _likeclick(){
+  _likeClick(){
     const selectorActiveLike = `place__button-like_active`;
     this._like.classList.toggle(selectorActiveLike);
   }
 
   _handleOpenCardPopup(){
-    this._onClick (this.#data.name, this.#data.link);
+    this._onClick (this._data.name, this._data.link);
   }
 
-  getTemplate(){
-    this.#template = document.querySelector('.place-template').
+  _createTempate(){
+    this._template = document.querySelector('.place-template').
     content.querySelector('.place').cloneNode(true)
   }
 
   create(){
-    this._placeElement = this.#template;
+    this._placeElement = this._template;
     this._card = this._placeElement.querySelector('.place__image');
     this._elementName = this._placeElement.querySelector('.place__title');
     this._removeButton = this._placeElement.querySelector('.place__button-delete');
     this._like = this._placeElement.querySelector(`.place__button-like`);
-    this._elementName.textContent = this.#data.name;
-    this._card.src = this.#data.link;
-    this._card.alt = this.#data.name;
+    this._elementName.textContent = this._data.name;
+    this._card.src = this._data.link;
+    this._card.alt = this._data.name;
     this.setListeners();
     return this._placeElement;
   }
@@ -49,7 +41,7 @@ export default class Card {
   setListeners(){
     this._removeButton.addEventListener(`click`, () =>  this._removeItem());
     this._card.addEventListener(`click`, () =>  this._handleOpenCardPopup());
-    this._like.addEventListener(`click`,() =>  this._likeclick());
+    this._like.addEventListener(`click`,() =>  this._likeClick());
   }
 
 }
