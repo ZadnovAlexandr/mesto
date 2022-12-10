@@ -2,8 +2,6 @@ import './index.css';
 import { initialCards, 
          openEditBtn,
          openAddBtn,
-         popupProfile,
-         popupAddCard,
          formProf,
          formAddCard,
          placesList,
@@ -11,7 +9,6 @@ import { initialCards,
          jobInput,
          impMestoName,
          mestoURL,
-         popupCard,
          configValidation
 } from "./utils/constants.js"
 import Card from "./components/card.js"
@@ -26,7 +23,7 @@ const formAddValidator = new FormValidator(configValidation, formAddCard);
 formProfValidator.enableValidation()
 formAddValidator.enableValidation()
 
-const popupPhoto = new PopupWithImage(popupCard);
+const popupPhoto = new PopupWithImage('.popup_type_open-card');
 popupPhoto.setEventListeners();
 
 const openPopupPhoto = (name, link) => {
@@ -52,7 +49,7 @@ const profileInfo = new UserInfo({
   professionSelector: `.profile__profession`
 });
 
-const profilePopup = new PopupWithForm(popupProfile, {
+const profilePopup = new PopupWithForm('.popup_type_profile', {
   handleSubmitForm: (data) => {
     profileInfo.setUserInfo({
       username: data.name ,
@@ -74,12 +71,7 @@ openEditBtn.addEventListener("click", () => {
   openProfilePopup(profilePopup);
 });
 
-/*const clearInput = () =>{
-  impMestoName.value = ``;
-  mestoURL.value = ``;
-} */
-
-const submitAddCardForm = new PopupWithForm(popupAddCard, {
+const submitAddCardForm = new PopupWithForm('.popup_type_add-card', {
   handleSubmitForm: () => {
     cardsSection.addItem(
       createCard({
@@ -96,5 +88,4 @@ openAddBtn.addEventListener("click", () => {
   submitAddCardForm.openPopup();
   formAddValidator.hideErrors();
   formAddValidator.disableButton();
- // clearInput();
 });
