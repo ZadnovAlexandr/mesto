@@ -67,6 +67,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(), // использовали плагин
     new MiniCssExtractPlugin() // подключение плагина для объединения файлов
-  ] // добавьте массив
+  ], // добавьте массив
+  devtool: 'eval-source-map'
 }
 // указали в какой файл будет собираться весь js и дали ему имя
