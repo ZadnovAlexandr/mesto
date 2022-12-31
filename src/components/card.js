@@ -1,6 +1,6 @@
 export default class Card {
  
-  constructor(data, onClick, userId, {handleDelet, handleLikeClick}){
+  constructor(data,templateSelector,  onClick, userId, {handleDelet, handleLikeClick}){
     this._data = data;
     this._onClick = onClick;
     this._ownerId = data.owner._id;
@@ -8,6 +8,7 @@ export default class Card {
     this._userId = userId;
     this.handleDelet = handleDelet;
     this.handleLikeClick = handleLikeClick;
+    this.templateSelector = templateSelector
     this._createTempate(); 
   }
 
@@ -21,7 +22,7 @@ export default class Card {
   }
 
   _createTempate(){
-    this._template = document.querySelector('.place-template').
+    this._template = document.querySelector(this.templateSelector).
     content.querySelector('.place').cloneNode(true)
   }
 

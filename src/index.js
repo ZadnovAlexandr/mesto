@@ -38,28 +38,19 @@ const api = new Api({
   }
 });
 
-api
-  .getUserInfo()
-    .then((user) => {
-      userId = user._id;
-      profileInfo.setUserInfo({
-        username: user.name,
-        profession: user.about,
-      });
-      profileInfo.setUserAvatar(user.avatar)
-
-      api
-        .getInitialCard()
-          .then((cards) => {
-             cardsSection.renderItems(cards.reverse());
-           }) 
-          .catch((err) => {
-            console.log(err);
-          });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+Promise.all([api.getUserInfo(), api.getInitialCard()])
+.then(([user, cards]) => {
+  userId = user._id;
+  profileInfo.setUserInfo({
+    username: user.name,
+    profession: user.about,
+  });
+  cardsSection.renderItems(cards.reverse())
+  profileInfo.setUserAvatar(user.avatar)
+})
+.catch((err) => {
+  console.log(err)
+})
  
 const cardsSection = new Section({
   renderer: (data) => {
@@ -69,7 +60,7 @@ const cardsSection = new Section({
 placesList);
 
 const createCard = (data) =>{
-  const card = new Card(data, openPopupPhoto,  userId, {
+  const card = new Card(data, '.place-template', openPopupPhoto,  userId, {
     handleDelet: () => {
       popupConfirmation.openPopup(() => {
         api.deleteCard(data._id).then(() => {
@@ -120,6 +111,7 @@ const profilePopup = new PopupWithForm('.popup_type_profile', {
         profession: formData.about,
         avatarURL: formData.avatar,
       });
+      profilePopup.closePopup();
     })
     .catch((err) => {
       console.log(err);

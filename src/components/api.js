@@ -5,7 +5,7 @@ export default class Api {
     this._headers = config.headers;
   }
 
-  _ErCheck(err) {
+  _checkError(err) {
     if(err.ok) {
       return err.json();
     }
@@ -17,7 +17,7 @@ export default class Api {
       method: "GET",
       headers: this._headers,
     })
-    .then(this._ErCheck);
+    .then(this._checkError);
   }
 
   getInitialCard() {
@@ -25,7 +25,7 @@ export default class Api {
       method: "GET",
       headers: this._headers,
     })
-    .then(this._ErCheck);
+    .then(this._checkError);
   }
 
   postCreateCard(dataCard) {
@@ -37,7 +37,7 @@ export default class Api {
         link: dataCard.link
       })
     })
-    .then(this._ErCheck);
+    .then(this._checkError);
   }
 
   editUser(dataUser) {
@@ -49,7 +49,7 @@ export default class Api {
         about: dataUser.profession
       })
     })
-    .then(this._ErCheck);
+    .then(this._checkError);
   }
 
   editAvatar(data) {
@@ -60,7 +60,7 @@ export default class Api {
         avatar: data.avatarURL
       })
     })
-    .then(this._ErCheck);
+    .then(this._checkError);
   }
 
   deleteCard(id) {
@@ -68,7 +68,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers
     })
-    .then(this._ErCheck)
+    .then(this._checkError)
   }
 
   addLike(id) {
@@ -76,7 +76,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers,
     })
-    .then(this._ErCheck)
+    .then(this._checkError)
   }
 
   deleteLike(id) {
@@ -84,7 +84,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-    .then(this._ErCheck)
+    .then(this._checkError)
   }
 
 }
