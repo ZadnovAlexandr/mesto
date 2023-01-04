@@ -1,6 +1,6 @@
 export default class Card {
  
-  constructor(data,templateSelector,  onClick, userId, {handleDelet, handleLikeClick}){
+  constructor(data, templateSelector,  onClick, userId, {handleDelet, handleLikeClick}){
     this._data = data;
     this._onClick = onClick;
     this._ownerId = data.owner._id;
